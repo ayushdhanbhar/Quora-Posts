@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts | Quora</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #b92b27;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .post {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user {
+            color: #b92b27;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .post h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #2b6cb0;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #1a4f8b;
+            text-decoration: underline;
+        }
+
+        form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #c53030;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .create-post {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .create-post h3 {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .create-post a {
+            display: inline-block;
+            background-color: #b92b27;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            transition: background-color 0.2s;
+        }
+
+        .create-post a:hover {
+            background-color: #9e2421;
+            text-decoration: none;
+        }
+
+        .post-actions {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Quora Posts</h1>
+    
+    <% for(post of posts){ %>
+        <div class="post">
+            <h3 class="user">@<%=post.username%></h3>
+            <h4><%=post.content%></h4>
+            <div class="post-time">Posted on <%= new Date(post.createdAt).toLocaleString() %></div>
+            
+            <div class="post-actions">
+                <a href="http://localhost:8080/posts/<%=post.id%>" class="view-link">View Details</a>
+                <a href="http://localhost:8080/posts/<%=post.id%>/edit" class="edit-link">Edit</a>
+                
+                <form action="/posts/<%=post.id%>?_method=DELETE" method="post">
+                    <button type="submit" id="inc">Delete Post</button>
+                </form>
+            </div>
+        </div>
+    <% } %>
+    
+    <div class="create-post">
+        <h3>Create a New Post</h3>
+        <a href="http://localhost:8080/posts/new">+ New Post</a>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
