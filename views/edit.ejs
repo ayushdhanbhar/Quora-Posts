@@ -117,12 +117,12 @@
         <p>Username: @<%= post.username %></p>
     </div>
 
-    <form method="POST" action="/posts/<%=post.id%>?_method=PATCH">
+    <form method="POST" action="/<%=post.id%>?_method=PATCH">
         <textarea name="content" required><%= post.content %></textarea>
         <button type="submit">Update Post</button>
     </form>
 
-    <a href="/posts/<%=post.id%>" class="back-link">← Cancel and view post</a>
+    <a href="/<%=post.id%>" class="back-link">← Cancel and view post</a>
 </body>
 
 </html>

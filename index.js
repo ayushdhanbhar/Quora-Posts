@@ -65,19 +65,19 @@ let posts = [
         content: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart."
     }
 ]
-app.get("/posts", (req, res) => {
+app.get("/", (req, res) => {
     res.render("home.ejs", { posts });
 })
-app.get("/posts/new", (req, res) => {
+app.get("/new", (req, res) => {
     res.render("new.ejs")
 })
-app.post("/posts", (req, res) => {
+app.post("/", (req, res) => {
     let { username, content } = req.body;
     let id = uuidv4();
     posts.push({ id, username, content })
-    res.redirect("/posts")
+    res.redirect("/")
 });
-app.get("/posts/:id", (req, res) => {
+app.get("/:id", (req, res) => {
     let { id } = req.params;
     console.log(id);
     let post = posts.find((p) => id == p.id);
@@ -85,7 +85,7 @@ app.get("/posts/:id", (req, res) => {
     // res.send("response working");
     res.render("show.ejs", { post });
 })
-app.patch("/posts/:id", (req, res) => {
+app.patch("/:id", (req, res) => {
     let { id } = req.params;
     let newcontent = req.body.content;
     let post = posts.find((p) => id == p.id);
@@ -93,19 +93,19 @@ app.patch("/posts/:id", (req, res) => {
     console.log(post)
 
     // console.log(newcontent);
-    res.redirect("/posts")
+    res.redirect("/")
 })
 
-app.get("/posts/:id/edit", (req, res) => {
+app.get("/:id/edit", (req, res) => {
     let { id } = req.params;
     let post = posts.find((p) => id == p.id);
     res.render("edit.ejs", { post });
 })
 
-app.delete("/posts/:id", (req, res) => {
+app.delete("/:id", (req, res) => {
     let { id } = req.params;
     posts = posts.filter((p) => id !== p.id);
-    res.redirect("/posts");
+    res.redirect("/");
 })
 
 app.listen(port, () => {

@@ -147,10 +147,10 @@
             <div class="post-time">Posted on <%= new Date(post.createdAt).toLocaleString() %></div>
             
             <div class="post-actions">
-                <a href="http://localhost:8080/posts/<%=post.id%>" class="view-link">View Details</a>
-                <a href="http://localhost:8080/posts/<%=post.id%>/edit" class="edit-link">Edit</a>
+                <a href="http://localhost:8080/<%=post.id%>" class="view-link">View Details</a>
+                <a href="http://localhost:8080/<%=post.id%>/edit" class="edit-link">Edit</a>
                 
-                <form action="/posts/<%=post.id%>?_method=DELETE" method="post">
+                <form action="/<%=post.id%>?_method=DELETE" method="post">
                     <button type="submit" id="inc">Delete Post</button>
                 </form>
             </div>
@@ -159,7 +159,7 @@
     
     <div class="create-post">
         <h3>Create a New Post</h3>
-        <a href="http://localhost:8080/posts/new">+ New Post</a>
+        <a href="http://localhost:8080/new">+ New Post</a>
     </div>
 
     <script src="index.js"></script>
