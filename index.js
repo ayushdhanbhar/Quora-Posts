@@ -81,8 +81,6 @@ app.get("/:id", (req, res) => {
     let { id } = req.params;
     console.log(id);
     let post = posts.find((p) => id == p.id);
-    // console.log(post);
-    // res.send("response working");
     res.render("show.ejs", { post });
 })
 app.patch("/:id", (req, res) => {
@@ -91,8 +89,6 @@ app.patch("/:id", (req, res) => {
     let post = posts.find((p) => id == p.id);
     post.content = newcontent;
     console.log(post)
-
-    // console.log(newcontent);
     res.redirect("/")
 })
 
